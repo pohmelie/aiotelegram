@@ -1,5 +1,12 @@
 # aiotelegram
-Tiny asyncio-based telgram api wrapper library. Features:
+Tiny asyncio-based telgram api wrapper library.
+
+## Reasons
+* [aiotg](https://github.com/szastupov/aiotg) is framework, not library and have no proxy support.
+* Raw api calls translation is better for understanding and will not break if telegram api will be changed.
+* `snake_case`
+
+## Features:
 * Simple as telegram api is.
 * Based on [`aiohttp`](https://github.com/KeepSafe/aiohttp).
 * Proxy available (via [`aiohttp`](https://github.com/KeepSafe/aiohttp) [`ProxyConnector`](http://aiohttp.readthedocs.io/en/stable/client_reference.html#aiohttp.ProxyConnector)).
