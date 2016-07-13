@@ -11,9 +11,8 @@ def read(f):
 
 try:
 
-    text = read(os.path.join("aioftp", "aiotelegram.py"))
-    version = re.findall(r"""^__version__ = "([^']+)"\r?$""",
-                         text, re.M)[0]
+    version = re.findall(r"""^__version__ = "([^"]+)"\r?$""",
+                         read("aiotelegram.py"), re.M)[0]
 
 except IndexError:
 

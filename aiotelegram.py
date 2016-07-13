@@ -5,6 +5,7 @@ import aiohttp
 
 
 __version__ = "0.1.0"
+version = tuple(map(int, str.split(__version__, ".")))
 
 
 class Api:
