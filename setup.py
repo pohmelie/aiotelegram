@@ -35,5 +35,6 @@ setup(
     author_email="multisosnooley@gmail.com",
     url="https://github.com/pohmelie/aiotelegram",
     license="WTFPL",
-    py_modules=["aiotelegram"]
+    py_modules=["aiotelegram"],
+    install_requires=["aiohttp"],
 )
