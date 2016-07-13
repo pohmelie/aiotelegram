@@ -6,13 +6,18 @@ Tiny asyncio-based telgram api wrapper library.
 * Raw api calls translation is better for understanding and will not break if telegram api will be changed.
 * `snake_case`
 
-## Features:
+## Features
 * Simple as telegram api is.
 * Based on [`aiohttp`](https://github.com/KeepSafe/aiohttp).
 * Proxy available (via [`aiohttp`](https://github.com/KeepSafe/aiohttp) [`ProxyConnector`](http://aiohttp.readthedocs.io/en/stable/client_reference.html#aiohttp.ProxyConnector)).
 * `snake_case` api converted to telegram `camelCase`.
 * Polling `offset` handled for you via `get_updates` method.
 * Source code is [short and simple](https://github.com/pohmelie/aiotelegram/blob/master/aiotelegram.py).
+
+## Installation
+```
+python -m pip install aiotelegram
+```
 
 ## Usage
 ### Polling updates
