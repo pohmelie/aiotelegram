@@ -4,7 +4,7 @@ import functools
 import aiohttp
 
 
-__version__ = "0.1.1"
+__version__ = "0.1.2"
 version = tuple(map(int, str.split(__version__, ".")))
 
 
@@ -12,22 +12,20 @@ class Api:
 
     URL = "https://api.telegram.org/bot{token}/{method}"
 
-    def __init__(self, token, *, connector_factory=lambda **_: None,
-                 loop=None, pause=0.05):
+    def __init__(self, token, *, loop=None, pause=0.05,
+                 connector_factory=lambda **_: None):
 
         self.token = token
-        self.connector_factory = connector_factory
-        self.pause = pause
         self.loop = loop or asyncio.get_event_loop()
+        self.pause = pause
+        self.connector_factory = connector_factory
         self.last_call = self.loop.time()
         self.offset = 0
 
     async def _api_call(self, method, **options):
 
-        now = self.loop.time()
-        delta = self.pause - (now - self.last_call)
+        delta = self.pause - (self.loop.time() - self.last_call)
         await asyncio.sleep(max(0, delta), loop=self.loop)
-        self.last_call = now
 
         request = aiohttp.get(
             str.format(Api.URL, token=self.token, method=method),
@@ -35,6 +33,8 @@ class Api:
             loop=self.loop,
             data=options,
         )
+
+        self.last_call = self.loop.time()
         async with request as response:
 
             return await response.json()
@@ -46,7 +46,7 @@ class Api:
     async def get_updates(self):
 
         response = await self.getUpdates(offset=self.offset)
-        for update in response["result"]:
+        for update in response.get("result", []):
 
             self.offset = max(self.offset, update["update_id"] + 1)
 
