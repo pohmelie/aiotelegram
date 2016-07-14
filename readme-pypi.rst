@@ -15,8 +15,8 @@ Features
 --------
 
 -  Simple as telegram api is.
--  Based on ```aiohttp```_.
--  Proxy available (via ```aiohttp```_ ```ProxyConnector```_).
+-  Based on `aiohttp`_.
+-  Proxy available (via `aiohttp`_ `ProxyConnector`_).
 -  ``snake_case`` api converted to telegram ``camelCase``.
 -  Polling ``offset`` handled for you via ``get_updates`` method.
 -  Handling timeout between requests automatically (via ``pause``
@@ -73,6 +73,6 @@ Sending message
         )
 
 .. _aiotg: https://github.com/szastupov/aiotg
-.. _``aiohttp``: https://github.com/KeepSafe/aiohttp
-.. _``ProxyConnector``: http://aiohttp.readthedocs.io/en/stable/client_reference.html#aiohttp.ProxyConnector
+.. _aiohttp: https://github.com/KeepSafe/aiohttp
+.. _ProxyConnector: http://aiohttp.readthedocs.io/en/stable/client_reference.html#aiohttp.ProxyConnector
 .. _short and simple: https://github.com/pohmelie/aiotelegram/blob/master/aiotelegram.py
