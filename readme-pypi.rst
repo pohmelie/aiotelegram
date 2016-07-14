@@ -1,7 +1,7 @@
 aiotelegram
 ===========
 
-Tiny asyncio-based telgram api wrapper library.
+Tiny asyncio-based telgram bot-api wrapper library.
 
 Reasons
 -------

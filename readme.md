@@ -1,5 +1,5 @@
 # aiotelegram
-Tiny asyncio-based telgram api wrapper library.
+Tiny asyncio-based telgram bot-api wrapper library.
 
 ## Reasons
 * [aiotg](https://github.com/szastupov/aiotg) is framework, not library and have no proxy support.
@@ -54,3 +54,9 @@ async def ...(...):
         parse_mode="Markdown",
     )
 ```
+## API
+* aiotelegram.Api(token, \*, loop=None, pause=0.05, connector\_factory=lambda **_: None):
+    * token (str): bot-api token
+    * loop (asyncio.BaseEventLoop): loop to use
+    * pause (int/float): delay between requests in seconds
+    * connector\_factory (callable): should return aiohttp connector (ProxyConnector, UnixConnector, etc.). connector\_factory get one keyword argument: loop.
