@@ -23,7 +23,7 @@ setup(
     name="aiotelegram",
     version=version,
     description="Tiny asyncio-based telgram api wrapper library",
-    long_description=read("readme.md"),
+    long_description=read("readme-pypi.rst"),
     classifiers=[
         "Development Status :: 5 - Production/Stable",
         "Programming Language :: Python",

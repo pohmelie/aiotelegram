@@ -4,7 +4,7 @@ import functools
 import aiohttp
 
 
-__version__ = "0.1.0"
+__version__ = "0.1.1"
 version = tuple(map(int, str.split(__version__, ".")))
 
 
