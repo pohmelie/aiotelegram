@@ -1,24 +1,31 @@
 import asyncio
 import functools
 
-import aiohttp
 
-
-__version__ = "0.1.2"
+__version__ = "0.2.0"
 version = tuple(map(int, str.split(__version__, ".")))
+
+
+async def aiohttp_get_json(url, *, data, loop):
+
+    import aiohttp
+
+    async with aiohttp.get(url, data=data, loop=loop) as response:
+
+        return await response.json()
 
 
 class Api:
 
     URL = "https://api.telegram.org/bot{token}/{method}"
 
-    def __init__(self, token, *, loop=None, pause=0.05,
-                 connector_factory=lambda **_: None):
+    def __init__(self, token, *, json_getter=None, loop=None, pause=0.05):
 
         self.token = token
+        self.json_getter = json_getter or aiohttp_get_json
         self.loop = loop or asyncio.get_event_loop()
         self.pause = pause
-        self.connector_factory = connector_factory
+
         self.last_call = self.loop.time()
         self.offset = 0
 
@@ -27,17 +34,8 @@ class Api:
         delta = self.pause - (self.loop.time() - self.last_call)
         await asyncio.sleep(max(0, delta), loop=self.loop)
 
-        request = aiohttp.get(
-            str.format(Api.URL, token=self.token, method=method),
-            connector=self.connector_factory(loop=self.loop),
-            loop=self.loop,
-            data=options,
-        )
-
-        self.last_call = self.loop.time()
-        async with request as response:
-
-            return await response.json()
+        url = str.format(Api.URL, token=self.token, method=method)
+        return await self.json_getter(url, data=options, loop=self.loop)
 
     def __getattr__(self, method):
 
