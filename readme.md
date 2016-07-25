@@ -59,13 +59,13 @@ aiotelegram.Api(token, *, json_getter=None, loop=None, pause=0.05)
 ```
 * token (str): bot-api token
 * json_getter (callable): async json provider. Default provider based on `aiohttp`. Example:
-```python
-async def json_provider(url, *, data, loop):
+    ```python
+    async def json_provider(url, *, data, loop):
 
-    # getting json
-    return json
-```
-    * url (str): address to get
+        # getting json
+        return json
+    ```
+    * url (str): https address to get
     * data (dict): same as `data` for `aiohttp` and `requests`
     * loop (asyncio.BaseEventLoop): event loop to use
 
