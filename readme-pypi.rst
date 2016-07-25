@@ -15,8 +15,7 @@ Features
 --------
 
 -  Simple as telegram api is.
--  Based on `aiohttp`_.
--  Proxy available (via `aiohttp`_ `ProxyConnector`_).
+-  Works with any json provider (`aiohttp`_ (default), `aiorequests`_, etc.)
 -  ``snake_case`` api converted to telegram ``camelCase``.
 -  Polling ``offset`` handled for you via ``get_updates`` method.
 -  Handling timeout between requests automatically (via ``pause``
@@ -30,49 +29,7 @@ Installation
 
     python -m pip install aiotelegram
 
-Usage
------
-
-Polling updates
-~~~~~~~~~~~~~~~
-
-.. code:: python
-
-    import aiotelegram
-
-
-    async def ...(...):
-
-        api = aiotelegram.Api(token)
-        while True:
-
-            response = await api.get_updates()
-            if not response["ok"]:
-
-                ...
-
-            else:
-
-                for update in response["result"]:
-
-                    ...
-
-            await asyncio.sleep(delay)
-
-Sending message
-~~~~~~~~~~~~~~~
-
-.. code:: python
-
-    async def ...(...):
-
-        await api.send_message(
-            chat_id=123456,
-            text="*foobar*",
-            parse_mode="Markdown",
-        )
-
 .. _aiotg: https://github.com/szastupov/aiotg
 .. _aiohttp: https://github.com/KeepSafe/aiohttp
-.. _ProxyConnector: http://aiohttp.readthedocs.io/en/stable/client_reference.html#aiohttp.ProxyConnector
+.. _aiorequests: https://github.com/pohmelie/aiorequests
 .. _short and simple: https://github.com/pohmelie/aiotelegram/blob/master/aiotelegram.py

@@ -8,8 +8,7 @@ Tiny asyncio-based telgram bot-api wrapper library.
 
 ## Features
 * Simple as telegram api is.
-* Based on [`aiohttp`](https://github.com/KeepSafe/aiohttp).
-* Proxy available (via [`aiohttp`](https://github.com/KeepSafe/aiohttp) [`ProxyConnector`](http://aiohttp.readthedocs.io/en/stable/client_reference.html#aiohttp.ProxyConnector)).
+* Works with any json provider ([`aiohttp`](https://github.com/KeepSafe/aiohttp) (default), [`aiorequests`](https://github.com/pohmelie/aiorequests), etc.)
 * `snake_case` api converted to telegram `camelCase`.
 * Polling `offset` handled for you via `get_updates` method.
 * Handling timeout between requests automatically (via `pause` keyword-only argument).
@@ -55,8 +54,20 @@ async def ...(...):
     )
 ```
 ## API
-* aiotelegram.Api(token, \*, loop=None, pause=0.05, connector\_factory=lambda **_: None):
-    * token (str): bot-api token
-    * loop (asyncio.BaseEventLoop): loop to use
-    * pause (int/float): delay between requests in seconds
-    * connector\_factory (callable): should return aiohttp connector (ProxyConnector, UnixConnector, etc.). connector\_factory get one keyword argument: loop.
+```python
+aiotelegram.Api(token, *, json_getter=None, loop=None, pause=0.05)
+```
+* token (str): bot-api token
+* json_getter (callable): async json provider. Default provider based on `aiohttp`. Example:
+```python
+async def json_provider(url, *, data, loop):
+
+    # getting json
+    return json
+```
+    * url (str): address to get
+    * data (dict): same as `data` for `aiohttp` and `requests`
+    * loop (asyncio.BaseEventLoop): event loop to use
+
+* loop (asyncio.BaseEventLoop): loop to use
+* pause (int/float): delay between requests in seconds
