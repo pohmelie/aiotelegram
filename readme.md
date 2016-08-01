@@ -55,10 +55,10 @@ async def ...(...):
 ```
 ## API
 ```python
-aiotelegram.Api(token, *, json_getter=None, loop=None, pause=0.05)
+aiotelegram.Api(token, *, json_provider=None, loop=None, pause=0.05)
 ```
 * token (str): bot-api token
-* json_getter (callable): async json provider. Default provider based on `aiohttp`. Example:
+* json_provider (callable): async json provider. Default provider based on `aiohttp`. Example:
     ```python
     async def json_provider(url, *, data, loop):
 

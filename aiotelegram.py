@@ -19,10 +19,10 @@ class Api:
 
     URL = "https://api.telegram.org/bot{token}/{method}"
 
-    def __init__(self, token, *, json_getter=None, loop=None, pause=0.05):
+    def __init__(self, token, *, json_provider=None, loop=None, pause=0.05):
 
         self.token = token
-        self.json_getter = json_getter or aiohttp_get_json
+        self.json_provider = json_provider or aiohttp_get_json
         self.loop = loop or asyncio.get_event_loop()
         self.pause = pause
 
@@ -35,7 +35,7 @@ class Api:
         await asyncio.sleep(max(0, delta), loop=self.loop)
 
         url = str.format(Api.URL, token=self.token, method=method)
-        return await self.json_getter(url, data=options, loop=self.loop)
+        return await self.json_provider(url, data=options, loop=self.loop)
 
     def __getattr__(self, method):
 
