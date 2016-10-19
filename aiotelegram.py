@@ -2,7 +2,7 @@ import asyncio
 import functools
 
 
-__version__ = "0.3.0"
+__version__ = "0.3.1"
 version = tuple(map(int, str.split(__version__, ".")))
 
 

@@ -36,4 +36,5 @@ setup(
     license="WTFPL",
     py_modules=["aiotelegram"],
     install_requires=["aiohttp"],
+    include_package_data=True,
 )
