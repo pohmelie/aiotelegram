@@ -1,5 +1,5 @@
 # aiotelegram
-Tiny asyncio-based telgram bot-api wrapper library.
+Tiny asyncio-based telgram bot-api wrapper library. Checkout [siotelegram](https://github.com/pohmelie/siotelegram) as next step of io/logic splitting.
 
 ## Reasons
 * [aiotg](https://github.com/szastupov/aiotg) is framework, not library and have no proxy support.
